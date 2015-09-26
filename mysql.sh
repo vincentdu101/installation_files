@@ -1,4 +1,4 @@
-sudo apt-get install mysql-server
+sudo apt-get install mysql-server mysql-client libmysqlclient-dev
 sudo /etc/init.d/mysql stop
 sudo mysqld_safe --skip-grant-tables &
 sudo apt-get install mysql-workbench

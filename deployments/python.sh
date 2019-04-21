@@ -38,7 +38,7 @@ function clone_app_repository() {
 
     # Get App
     echo ======= Cloning App =======
-    if [[ -d ~/wildfire-server]] then
+    if [ -d ~/wildfire-server]; then
         sudo rm -rf ~/wildfire-server
         git clone https://github.com/vincentdu101/Wildfire-Analyzer-Predictor-System.git ~/wildfire-server
         cd ~/wildfire-server/

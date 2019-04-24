@@ -152,7 +152,7 @@ EOF"
 
 function launch_app() {
     printf "Serving the app"
-    sudo nohup ./home/ubuntu/launch.sh &
+    sudo nohup ~/launch.sh &
 }
 
 

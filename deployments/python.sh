@@ -38,14 +38,11 @@ function clone_app_repository() {
 
     # Get App
     echo ======= Cloning App =======
-    if [ -d ~/wildfire-server]; then
-        sudo rm -rf ~/wildfire-server
-        git clone https://github.com/vincentdu101/Wildfire-Analyzer-Predictor-System.git ~/wildfire-server
-        cd ~/wildfire-server/server/
-    else
-        git clone https://github.com/vincentdu101/Wildfire-Analyzer-Predictor-System.git ~/wildfire-server
-        cd ~/wildfire-server/server/
-    fi
+    sudo rm -rf ~/wildfire-server
+    git clone https://github.com/vincentdu101/Wildfire-Analyzer-Predictor-System.git ~/wildfire-server
+    cd ~/wildfire-server/server/models
+    wget https://s3-us-west-2.amazonaws.com/wildfire-analyzer-system/wildfires.sqlite
+    cd ..
 }
 
 function setup_app() {
@@ -60,9 +57,13 @@ function setup_app() {
 function setup_env() {
     printf "Setting up initial Environment"
 
+    # Install python3-flask
+    sudo apt install python3-flask
+
     # Setting up env file
+    sudo rm -rf home/ubuntu/.env
     sudo cat > ~/.env <<EOF
-        export APP_CONFIG = "production"
+        export APP_CONFIG="production"
         export FLASK_APP=app.py
 EOF
     source ~/.env
@@ -111,13 +112,13 @@ EOF'
 
 function create_launch_script() {
     printf "Creating a launch script"
-
+    sudo rm -rf home/ubuntu/launch.sh
     sudo cat > /home/ubuntu/launch.sh <<EOF
     #!/bin/bash
-    cd ~/wildfire-server
+    cd ~/wildfire-server/server
     source ~/.env
     source ~/env/bin/activate
-    gunicorn app:APP -D
+    FLASK_APP=app.py flask run
 EOF
 
     sudo chmod 744 /home/ubuntu/launch.sh

@@ -151,6 +151,7 @@ EOF"
 
 function launch_app() {
     printf "Serving the app"
+    export FLASK_RUN_PORT=8000
     sudo bash /home/ubuntu/launch.sh
 }
 

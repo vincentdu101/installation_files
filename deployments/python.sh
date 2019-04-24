@@ -29,8 +29,8 @@ function setup_python_env() {
 
     # Create virtual environment and activate it
     echo ======= Creating and activating virtual env =======
-    virtualenv -p python3 env
-    source ./env/bin/activate
+    virtualenv -p python3 ~/env
+    source ~/env/bin/activate
 }
 
 function clone_app_repository() {
@@ -65,6 +65,7 @@ function setup_env() {
     sudo cat > ~/.env <<EOF
         export APP_CONFIG="production"
         export FLASK_APP=app.py
+        export FLASK_RUN_PORT=8000
 EOF
     source ~/.env
 }
@@ -118,7 +119,7 @@ function create_launch_script() {
     cd ~/wildfire-server/server
     source ~/.env
     source ~/env/bin/activate
-    FLASK_APP=app.py flask run
+    flask run
 EOF
 
     sudo chmod 744 /home/ubuntu/launch.sh
@@ -151,7 +152,6 @@ EOF"
 
 function launch_app() {
     printf "Serving the app"
-    export FLASK_RUN_PORT=8000
     sudo bash /home/ubuntu/launch.sh
 }
 

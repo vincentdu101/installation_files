@@ -41,7 +41,7 @@ function clone_app_repository() {
     sudo rm -rf ~/wildfire-server
     git clone https://github.com/vincentdu101/Wildfire-Analyzer-Predictor-System.git ~/wildfire-server
     cd ~/wildfire-server/server/models
-    wget https://s3-us-west-2.amazonaws.com/wildfire-analyzer-system/wildfires.sqlite
+    wget ${WILDFIRE_SQL}
     cd ..
 }
 

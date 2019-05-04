@@ -43,6 +43,7 @@ function clone_app_repository() {
     cd ~/wildfire-server/server/models
     export WILDFIRE_SQL=https://s3-us-west-2.amazonaws.com/wildfire-analyzer-system/wildfires.sqlite
     wget ${WILDFIRE_SQL}
+    sudo chmod 644 wildfires.sqlite
     cd ..
 }
 

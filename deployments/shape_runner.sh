@@ -4,7 +4,7 @@ function setup_node_environment() {
     # download nvm
     echo Downloading nvm
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-    source ~/.bashrc
+    source ~/.nvm/nvm.sh
 
     # install the latest node version
     echo Install the latest node version

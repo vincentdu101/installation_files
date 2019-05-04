@@ -53,7 +53,7 @@ function setup_app() {
 
     # Install required dependencies
     echo ======= Installing required packages =======
-    pip install -r ubuntu-requirements.txt
+    pip --no-cache-dir install -r ubuntu-requirements.txt
 }
 
 function setup_env() {

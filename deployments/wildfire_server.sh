@@ -41,6 +41,7 @@ function clone_app_repository() {
     sudo rm -rf ~/wildfire-server
     git clone https://github.com/vincentdu101/Wildfire-Analyzer-Predictor-System.git ~/wildfire-server
     cd ~/wildfire-server/server/models
+    export WILDFIRE_SQL=https://s3-us-west-2.amazonaws.com/wildfire-analyzer-system/wildfires.sqlite
     wget ${WILDFIRE_SQL}
     cd ..
 }
@@ -51,7 +52,7 @@ function setup_app() {
 
     # Install required dependencies
     echo ======= Installing required packages =======
-    pip install -r requirements.txt
+    pip install -r ubuntu-requirements.txt
 }
 
 function setup_env() {

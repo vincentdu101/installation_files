@@ -53,6 +53,29 @@ EOF
     ls -al ~/shape_runner_launch.sh
 }
 
+function configure_startup_service() {
+    printf "Configure startup service"
+
+    sudo bash -c "cat > /etc/systemd/system/shape-runner.service <<EOF
+    [Unit]
+    Description=shape-runner startup service
+    After=network.target
+
+    [Service]
+    User=ubuntu
+    ExecStart=/bin/bash /home/ubuntu/shape_runner_launch.sh
+    
+    [Install]
+    WantedBy=multi-user.target
+EOF"
+
+    sudo chmod 644 /etc/systemd/system/shape-runner.service
+    sudo systemctl daemon-reload
+    sudo systemctl enable shape-runner.service
+    sudo systemctl start shape-runner.service
+    sudo service shape-runner status
+}
+
 function launch_app() {
     printf "Serving the app"
     sudo nohup ~/shape_runner_launch.sh &

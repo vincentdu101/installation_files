@@ -37,3 +37,29 @@ function setup_app() {
     echo Setting up App
     yarn
 }
+
+function create_launch_script() {
+    printf "Creating launch script"
+    sudo rm -rf home/ubuntu/shape_runner_launch.sh
+    sudo cat > /home/ubuntu/shape_runner_launch.sh <<EOF
+    #!/bin/bash
+    cd ~/shape-runner
+    yarn start:dev
+EOF
+
+    sudo chmod 744 /home/ubuntu/shape_runner_launch.sh
+    echo Ensure script is executable
+    ls -al ~/shape_runner_launch.sh
+}
+
+function launch_app() {
+    printf "Serving the app"
+    sudo nohup ~/shape_runner_launch.sh &
+}
+
+# Runtime
+setup_node_environment
+clone_app_repository
+setup_app
+create_launch_script
+launch_app

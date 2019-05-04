@@ -70,47 +70,6 @@ EOF
     source ~/.env
 }
 
-function setup_nginx() {
-    printf "Setting up nginx"
-
-    echo ======= Installing nginx =======
-    sudo apt-get install -y nginx
-
-    # Configure nginx routing 
-    echo ======= Configuring nginx =======
-    echo ======= Removing default config =======
-    sudo rm -rf /etc/nginx/sites-available/default
-    sudo rm -rf /etc/nginx/sites-enabled/default
-
-    echo ======= Replace config file =======
-    sudo bash -c 'cat <<EOF > /etc/nginx/sites-available/default
-    server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
-
-        server_name _;
-
-        location / {
-            # reverse proxy and serve the app
-            # running on the localhost:8000
-            proxy_pass http://127.0.0.1:8000/;
-            proxy_set_header HOST \$host;
-            proxy_set_header X-Forwarded-Proto \$scheme;
-            proxy_set_header X-Real-IP \$remote_addr;
-            proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-        }
-    }
-EOF'
-
-    echo ======= Create a symbolic link of the file to sites-enabled =======
-    sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
-
-    # Ensure nginx server is running 
-    echo ======= Check nginx server status
-    sudo systemctl restart nginx 
-    sudo nginx -t     
-}
-
 function create_launch_script() {
     printf "Creating a launch script"
     sudo rm -rf home/ubuntu/launch.sh
@@ -161,7 +120,6 @@ init_worker
 setup_python_env
 clone_app_repository
 setup_app
-setup_nginx
 create_launch_script
 configure_startup_service
 launch_app

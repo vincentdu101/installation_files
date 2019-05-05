@@ -86,4 +86,5 @@ setup_node_environment
 clone_app_repository
 setup_app
 create_launch_script
+configure_startup_service
 launch_app

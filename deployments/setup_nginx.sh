@@ -1,6 +1,15 @@
 function setup_nginx() {
     printf "Setting up nginx"
 
+    # Update packages
+    echo Updating packages
+    sudo apt-get update
+
+    # Export language locale settings
+    echo ======= Exporting language locale settings =======
+    export LC_ALL=C.UTF-8
+    export LANG=C.UTF-8
+
     echo ======= Installing nginx =======
     sudo apt-get install -y nginx
 

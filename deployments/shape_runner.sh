@@ -52,8 +52,7 @@ function create_launch_script() {
     nvm use --lts
     yarn run build
     cd dist
-    openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem
-    http-server -p 9000 -S -C cert.pem
+    http-server -p 9000
 EOF
 
     sudo chmod 744 /home/ubuntu/shape_runner_launch.sh

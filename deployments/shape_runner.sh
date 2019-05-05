@@ -45,6 +45,7 @@ function create_launch_script() {
     sudo cat > /home/ubuntu/shape_runner_launch.sh <<EOF
     #!/bin/bash
     cd ~/shape-runner
+    nvm use --lts
     yarn start:dev
 EOF
 
@@ -68,7 +69,7 @@ function configure_startup_service() {
     [Install]
     WantedBy=multi-user.target
 EOF"
-
+    
     sudo chmod 644 /etc/systemd/system/shape-runner.service
     sudo systemctl daemon-reload
     sudo systemctl enable shape-runner.service

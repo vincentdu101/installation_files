@@ -45,6 +45,7 @@ function create_launch_script() {
     sudo cat > /home/ubuntu/shape_runner_launch.sh <<EOF
     #!/bin/bash
     cd ~/shape-runner
+    source ~/.nvm/nvm.sh
     nvm use --lts
     yarn start:dev
 EOF

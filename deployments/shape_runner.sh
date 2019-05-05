@@ -19,6 +19,9 @@ function setup_node_environment() {
 
     # install webpack globally
     npm install -g webpack
+
+    # install http-server globally
+    npm install -g http-server
 }
 
 function clone_app_repository() {
@@ -47,7 +50,10 @@ function create_launch_script() {
     cd ~/shape-runner
     source ~/.nvm/nvm.sh
     nvm use --lts
-    yarn start:dev
+    yarn run build
+    cd dist
+    openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem
+    http-server -p 9000 -S -C cert.pem
 EOF
 
     sudo chmod 744 /home/ubuntu/shape_runner_launch.sh

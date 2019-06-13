@@ -24,7 +24,7 @@ function clone_app_repo() {
     echo getting application
 
     sudo rm -rf ~/flagship-client
-    https://github.com/vincentdu101/flagship-client.git ~/flagship-client
+    git clone https://github.com/vincentdu101/flagship-client.git ~/flagship-client
     cd ~/flagship-client
 }
 

@@ -42,7 +42,8 @@ function create_launch_script() {
     cd ~/flagship-client
     source ~/.nvm/nvm.sh
     nvm use --lts
-    yarn start
+    ng build --env=prod
+    ng serve --prod=true
 EOF
 
     sudo chmod 744 /home/ubuntu/flagship_client_launch.sh

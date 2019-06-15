@@ -43,7 +43,7 @@ function create_launch_script() {
     source ~/.nvm/nvm.sh
     nvm use --lts
     yarn build
-    ng serve --prod=true
+    ng serve --prod=true --live-reload false
 EOF
 
     sudo chmod 744 /home/ubuntu/flagship_client_launch.sh

@@ -42,7 +42,7 @@ function create_launch_script() {
     cd ~/flagship-client
     source ~/.nvm/nvm.sh
     nvm use --lts
-    ng build --env=prod
+    yarn build
     ng serve --prod=true
 EOF
 

@@ -16,6 +16,7 @@ function setup_node_environment() {
     npm install -g yarn
     npm install -g typescript
     npm install -g @angular/cli --latest
+    npm install -g http-server
     npm install -g babel-cli
     npm install -g yarn
 }
@@ -42,8 +43,9 @@ function create_launch_script() {
     cd ~/flagship-client
     source ~/.nvm/nvm.sh
     nvm use --lts
-    yarn build
-    ng serve --prod=true --live-reload false
+    ng build --prod
+    cd dist
+    http-server -p 4200
 EOF
 
     sudo chmod 744 /home/ubuntu/flagship_client_launch.sh

@@ -17,6 +17,10 @@ function init_worker() {
     # Install gunicorn 
     echo ======= Install gunicorn =======
     sudo apt install gunicorn
+
+    # install git lfs
+    sudo apt-get install git-lfs
+    git lfs install
 }
 
 function setup_python_env() {
@@ -45,6 +49,8 @@ function clone_app_repository() {
     wget ${WILDFIRE_SQL}
     sudo chmod 644 wildfires.sqlite
     cd ..
+    git lfs init
+    git lfs pull
 }
 
 function setup_app() {

@@ -8,7 +8,7 @@ function setup_app() {
 function create_launch_script() {
     echo creating launch script
     sudo rm -rf home/ubuntu/wildfire_client_launch.sh
-    sudo cat > /home/ubuntu/widlfire_client_launch.sh <<EOF
+    sudo cat > /home/ubuntu/wildfire_client_launch.sh <<EOF
     #!/bin/bash
     cd ~/wildfire-server/client
     source ~/.nvm/nvm.sh

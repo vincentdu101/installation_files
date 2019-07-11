@@ -1,5 +1,7 @@
 function setup_app() {
     printf "Setting up app dependencies"
+    source ~/.nvm/nvm.sh
+    nvm use --lts
     yarn global add serve
     cd ~/wildfire-server/client
     yarn

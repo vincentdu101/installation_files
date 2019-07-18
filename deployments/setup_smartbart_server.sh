@@ -22,6 +22,7 @@ function setup_mysql() {
 
     sudo apt install mysql-server
     sudo mysql_secure_installation
+    mysql -u root -p < ~/smartbart/database/smartbart.sql
 }
 
 function clone_app_repo() {
@@ -39,16 +40,16 @@ function setup_app() {
 
 function create_launch_script() {
     echo Create Launch Script
-    sudo rm -rf home/ubuntu/smartbart_launch.sh
-    sudo cat > /home/ubuntu/smartbart_launch.sh <<EOF
+    sudo rm -rf home/ubuntu/smartbart_server_launch.sh
+    sudo cat > /home/ubuntu/smartbart_server_launch.sh <<EOF
     #!/bin/bash
     cd ~/smartbart
     mvn spring-boot:run
 EOF
 
-    sudo chmod 744 /home/ubuntu/smartbart_launch.sh
+    sudo chmod 744 /home/ubuntu/smartbart_server_launch.sh
     echo ensure script is executable
-    ls -al ~/smartbart_launch.sh
+    ls -al ~/smartbart_server_launch.sh
 }
 
 function configure_start_service() {
@@ -61,22 +62,22 @@ function configure_start_service() {
 
     [Service]
     User=ubuntu
-    ExecStart=/bin/bash /home/ubuntu/smartbart.sh
+    ExecStart=/bin/bash /home/ubuntu/smartbart_server_launch.sh
 
     [Install]
     WantedBy=multi-user.target 
 EOF"
 
-    sudo chmod 644 /etc/systemd/system/smartbart.service
+    sudo chmod 644 /etc/systemd/system/smartbart-server.service
     sudo systemctl daemon-reload
-    sudo systemctl enable smartbart.service
-    sudo systemctl start smartbart.service
-    sudo service smartbart status
+    sudo systemctl enable smartbart-server.service
+    sudo systemctl start smartbart-server.service
+    sudo service smartbart-server status
 }
 
 function launch_app() {
     echo Serve the Application
-    sudo nohup ~/smartbart_launch.sh &
+    sudo nohup ~/smartbart_server_launch.sh &
 }
 
 # Runtime

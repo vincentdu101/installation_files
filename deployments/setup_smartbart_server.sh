@@ -55,7 +55,7 @@ EOF
 function configure_start_service() {
     echo Configure Startup Service
 
-    sudo bash -c "cat > /etc/systemd/system/smartbart.service <<EOF
+    sudo bash -c "cat > /etc/systemd/system/smartbart-server.service <<EOF
     [Unit]
     Description=smartbart startup service
     After=network.target
@@ -81,9 +81,9 @@ function launch_app() {
 }
 
 # Runtime
-setup_java_environment
-setup_maven
-setup_mysql
+# setup_java_environment
+# setup_maven
+# setup_mysql
 clone_app_repo
 setup_app
 create_launch_script

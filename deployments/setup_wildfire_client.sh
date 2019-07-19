@@ -20,7 +20,7 @@ function create_launch_script() {
 EOF
 
     sudo chmod 744 /home/ubuntu/wildfire_client_launch.sh
-    sudo ensure script is executable
+    echo ensure script is executable
     ls -al ~/wildfire_client_launch.sh
 }
 

@@ -35,7 +35,7 @@ function clone_app_repo() {
 
 function setup_app() {
     echo Setting up app
-    mvn clean install
+    sudo mvn clean install
 }
 
 function create_launch_script() {
@@ -44,7 +44,7 @@ function create_launch_script() {
     sudo cat > /home/ubuntu/smartbart_server_launch.sh <<EOF
     #!/bin/bash
     cd ~/smartbart
-    mvn spring-boot:run
+    sudo mvn spring-boot:run
 EOF
 
     sudo chmod 744 /home/ubuntu/smartbart_server_launch.sh

@@ -2,6 +2,7 @@ function setup_app() {
     echo Setup App
     source ~/.nvm/nvm.sh
     nvm use --lts
+
     cd ~/smartbart/src/main/resources/static
     npm install
 }
@@ -14,7 +15,7 @@ function create_launch_script() {
     cd ~/smartbart/src/main/resources/static
     source ~/.nvm/nvm.sh
     nvm use --lts
-    yarn build
+    npm run build
     cd build
     http-server -p 5000
 EOF

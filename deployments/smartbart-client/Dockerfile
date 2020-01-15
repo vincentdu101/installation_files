@@ -16,7 +16,7 @@ RUN npm install -g http-server
 RUN npm install
 RUN npm run build
 
-WORKDIR build
+# WORKDIR build
 
 EXPOSE 5000
-CMD ["http-server", "-p", "5000"];
+CMD ["http-server", "-p", "5000", "./build"];

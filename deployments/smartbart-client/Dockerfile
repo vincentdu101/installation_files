@@ -19,4 +19,4 @@ RUN npm run build
 # WORKDIR build
 
 EXPOSE 5000
-CMD ["http-server", "-p", "5000", "./build"];
+CMD ["npm", "start"];

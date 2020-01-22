@@ -12,11 +12,11 @@ RUN git clone https://github.com/vincentdu101/SmartBart.git ./smartbart
 
 WORKDIR ./smartbart/src/main/resources/static
 
-RUN npm install -g http-server
+RUN npm install -g serve
 RUN npm install
 RUN npm run build
 
-# WORKDIR build
+WORKDIR build
 
 EXPOSE 5000
-CMD ["npm", "start"];
+CMD ["serve", "-p", "5000", "-s", "."];

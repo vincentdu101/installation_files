@@ -20,7 +20,7 @@ RUN git lfs pull
 
 ENV APP_CONFIG="production"
 ENV FLASK_APP="app.py"
-ENV FLASK_RUN="8000"
+ENV FLASK_RUN_PORT="8000"
 
 RUN pip3 install virtualenv
 RUN apt install virtualenv -y

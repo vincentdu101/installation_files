@@ -15,7 +15,6 @@ RUN git clone https://github.com/vincentdu101/Wildfire-Analyzer-Predictor-System
 
 WORKDIR wildfire-server/server
 
-# RUN git lfs init
 RUN git lfs pull
 
 ENV APP_CONFIG="production"
@@ -37,4 +36,4 @@ WORKDIR ../
 RUN pwd
 EXPOSE 8000
 
-CMD ["flask", "run"]
+CMD ["flask", "run", "--host", "0.0.0.0"]
